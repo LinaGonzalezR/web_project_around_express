@@ -1,22 +1,18 @@
-const router = require("express").Router();
-const UserData = require("../data/users.json");
+const express = require("express");
+const {
+  getUsers,
+  getUserById,
+  createUser,
+  updateUserProfile,
+  updateUserAvatar,
+} = require("../controllers/users");
 
-router.get("/users", (req, res) => {
-  res.json(UserData);
-});
+const router = express.Router();
 
-router.get("/users/:id", (req, res) => {
-  const { id } = req.params;
-  const card = UserData.find((item) => item._id === id);
-  if (card) {
-    res.send({
-      card,
-    });
-  } else {
-    res.status(404).send({
-      message: "NOT FOUND",
-    });
-  }
-});
+router.get("/users", getUsers);
+router.get("/users/:userId", getUserById);
+router.post("/users", createUser);
+router.patch("/me", updateUserProfile);
+router.patch("/me/avatar", updateUserAvatar);
 
 module.exports = router;
