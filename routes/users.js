@@ -9,9 +9,9 @@ const {
 
 const router = express.Router();
 
-router.get("/users", getUsers);
-router.get("/users/:userId", getUserById);
-router.post("/users", createUser);
+router.get("/", getUsers);
+router.get("/:userId", getUserById);
+router.post("/", createUser);
 router.patch("/me", updateUserProfile);
 router.patch("/me/avatar", updateUserAvatar);
 
